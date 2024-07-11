@@ -26,27 +26,45 @@ async function sendMail(data, callback) {
   //   });
 
   const transporter = nodemailer.createTransport({
-    service: "gmail",
-    host: "smtp.gmail.com",
+    host: "anarish.com",
     auth: {
-      user: "bansaldeepu.888@gmail.com",
-      pass: "gvdw snma zprt xhfr",
+      user: "admin@anarish.com",
+      pass: "Anarish@123",
     },
   });
 
-  let mailOptions = {
+  let mailOption1 = {
     // from: ".anarish.com",
     from: {
       name: "Anarish",
-      address: "bansaldeepu.888@gmail.com",
+      address: "admin@anarish.com",
     },
-    to: [data.email, "kumartech0102@gmail.com"],
+    to: [data.email],
     subject: "Anarish Innovations",
-    html: `<h1>Hello!</h1>
+    html: `<h1>Welcome to Our Platform</h1>
     <p>Thankyou for choosing anarish innovations, Our team will get in touch with you soon</b>.</p></br>`,
   };
 
-  let info = await transporter.sendMail(mailOptions);
+  let mailOption2 = {
+    // from: ".anarish.com",
+    from: {
+      name: "Anarish",
+      address: "admin@anarish.com",
+    },
+    to: ["marketing@anarish.com", "kumartech0102@gmail.com"],
+    subject: "New Query Anarish Innovations",
+    html: `<h1>Anarish Innovations</h1>
+    <h3>New user :-</h3></br> </br>
+    <p> user name: ${data.name} </p></br>
+    <p>email: ${data.email}</p></br>
+    <p> Phone Number: ${data.phoneNumber} </p></br>
+    <p> intrests: ${data.intrests} </p></br>
+    <p>projectRequirements: ${data.projectRequirements} </p></br>
+    <p>date: ${data.date}</p>`,
+  };
+
+  let info = await transporter.sendMail(mailOption1);
+  let infoAnarish = await transporter.sendMail(mailOption2);
 
   callback(info);
 }
