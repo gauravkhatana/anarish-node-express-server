@@ -12,6 +12,16 @@ router.post("/", (req, res) => {
   });
 });
 
+// router.get("getcontactqueries",(req,res)=>{
+//   contactSchema.find().then((data)=>{
+//       return res.send({success: true, data})
+//   })}
+
+
+
+
+
+
 async function sendMail(data, callback) {
   console.log("Sending mail is in process");
 
@@ -40,9 +50,11 @@ async function sendMail(data, callback) {
       address: "admin@anarish.com",
     },
     to: [data.email],
-    subject: "Anarish Innovations",
-    html: `<h1>Welcome to Our Platform</h1>
-    <p>Thankyou for choosing anarish innovations, Our team will get in touch with you soon</b>.</p></br>`,
+    subject: "Welcome to Anarish Innovation - We are excited to Connect! ",
+    html: `Hi ${data.name} <br/> Welcome to Our Platform! ! We're thrilled to have the opportunity to work with you! <br/>
+    We have received your inquiry and one of our team members will get in touch with you soon to discuss your needs in more detail.
+    <br/>
+    <br/> <br/> Warm Regards,<br/> Team Anarish`,
   };
 
   let mailOption2 = {
@@ -51,16 +63,14 @@ async function sendMail(data, callback) {
       name: "Anarish",
       address: "admin@anarish.com",
     },
-    to: ["marketing@anarish.com","maheshwari.charu@gmail.com"],
-    subject: "New Query Anarish Innovations",
-    html: `<h1>Anarish Innovations</h1>
-    <h3>New user :-</h3></br> </br>
-    <p> user name: ${data.name} </p></br>
-    <p>email: ${data.email}</p></br>
-    <p> Phone Number: ${data.phoneNumber} </p></br>
-    <p> intrests: ${data.intrests} </p></br>
-    <p>projectRequirements: ${data.projectRequirements} </p></br>
-    <p>date: ${data.date}</p>`,
+    to: ["marketing@anarish.com","charu.maheshwari@anarish.com"],
+    subject: "New Query from Website",
+    html: `Following user has tried to contact Anarish on ${data.date} : </br> </br>
+    <p> <b> Name: </b> ${data.name} </p></br>
+    <p> <b> Email: </b> ${data.email}</p></br>
+    <p> <b> Phone Number: </b> ${data.phoneNumber} </p></br>
+    <p> <b> Interested In : </b> ${data.intrests} </p></br>
+    <p> Message Shared : ${data.projectRequirements} </p></br>`,
   };
 
   let info = await transporter.sendMail(mailOption1);
@@ -68,4 +78,6 @@ async function sendMail(data, callback) {
 
   callback(info);
 }
+
 module.exports = router;
+
