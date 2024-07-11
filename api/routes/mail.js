@@ -51,7 +51,7 @@ async function sendMail(data, callback) {
       name: "Anarish",
       address: "admin@anarish.com",
     },
-    to: ["marketing@anarish.com", "kumartech0102@gmail.com"],
+    to: ["marketing@anarish.com","maheshwari.charu@gmail.com"],
     subject: "New Query Anarish Innovations",
     html: `<h1>Anarish Innovations</h1>
     <h3>New user :-</h3></br> </br>
