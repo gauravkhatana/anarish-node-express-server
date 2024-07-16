@@ -9,7 +9,6 @@ const app = express();
 // Database connection
 mongoose
   .connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
     useUnifiedTopology: true,
     // Additional options to avoid deprecation warnings
   })
