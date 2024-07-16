@@ -4,12 +4,11 @@ const router = express.Router();
 
 // Configure nodemailer transporter
 const transporter = nodemailer.createTransport({
-  host: "anarish.com",
-  port: 587,
-  secure: false, // true for 465, false for other ports
+  service: 'gmail',
+  host: 'smtp.gmail.com',
   auth: {
-    user: "admin@anarish.com",
-    pass: "Anarish@123",
+    user: "bansaldeepu.888@gmail.com",
+    pass: 'gvdw snma zprt xhfr'
   },
   pool: true, // Use connection pooling for better performance
   maxConnections: 5, // Maximum number of concurrent connections
