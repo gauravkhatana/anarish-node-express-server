@@ -4,13 +4,17 @@ const router = express.Router();
 
 // Configure nodemailer transporter
 const transporter = nodemailer.createTransport({
-  host: "smtp.anarish.com",
+  host: "anarish.com",
   port: 587,
   secure: false, // true for 465, false for other ports
   auth: {
     user: "admin@anarish.com",
     pass: "Anarish@123",
   },
+  pool: true, // Use connection pooling for better performance
+  maxConnections: 5, // Maximum number of concurrent connections
+  connectionTimeout: 10000, // Increase timeout (in ms)
+  greetingTimeout: 20000, // Increase greeting timeout (in ms)
 });
 
 // Route to handle POST requests for sending emails
@@ -55,8 +59,10 @@ router.post("/", async (req, res) => {
     };
 
     // Send both emails
-    await transporter.sendMail(mailOptions1);
-    await transporter.sendMail(mailOptions2);
+    await Promise.all([
+      transporter.sendMail(mailOptions1),
+      transporter.sendMail(mailOptions2),
+    ]);
 
     console.log("A mail has been sent to the user and to Anarish");
     return res.status(200).json({ message: "Emails sent successfully" });
