@@ -29,8 +29,6 @@ const usersRoutes = require("./api/routes/users");
 const mailRoutes = require("./api/routes/mail");
 const studentsRoutes = require("./api/routes/students");
 
-// Static file serving
-app.use(express.static(path.join(__dirname, 'public'))); // Serve static files from the 'public' directory
 
 // API Routes
 app.use("/users", usersRoutes);
@@ -38,16 +36,7 @@ app.use("/sendmail", mailRoutes);
 // Uncomment if you need to use studentsRoutes
 // app.use("/students", studentsRoutes);
 
-// Check path route
-app.get('/check-path', (req, res) => {
-  res.sendFile(path.join(__dirname, '/index.html'), (err) => {
-    if (err) {
-      res.status(err.status || 500).end();
-    } else {
-      console.log('Path is correct.');
-    }
-  });
-});
+
 
 // Catch-all route for serving the index.html file
 app.get('*', (req, res) => {
