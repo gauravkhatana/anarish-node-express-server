@@ -40,7 +40,7 @@ app.use("/sendmail", mailRoutes);
 
 // Catch-all route for serving the index.html file
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html')); // Serve the main HTML file for all other routes
+  res.sendFile(path.join(__dirname, '/index.html')); // Serve the main HTML file for all other routes
 });
 
 // Error handling middleware
