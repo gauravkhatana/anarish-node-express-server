@@ -42,6 +42,9 @@ const usersRoutes = require("./api/routes/users");
 const mailRoutes = require("./api/routes/mail");
 const studentsRoutes = require("./api/routes/students");
 
+
+
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -63,6 +66,16 @@ app.use(cors());
 app.use("/users", usersRoutes);
 app.use("/sendmail", mailRoutes);
 // app.use("/students", studentsRoutes);
+
+app.get('/check-path', (req, res) => {
+  res.sendFile(path.join(__dirname, '/index.html'), (err) => {
+    if (err) {
+      res.status(err.status).end();
+    } else {
+      console.log('Path is correct.');
+    }
+  });
+});
 
 app.use((req, resp, next) => {
   const error = new Error("Page Not Found");

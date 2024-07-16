@@ -63,7 +63,7 @@ async function sendMail(data, callback) {
       name: "Anarish",
       address: "admin@anarish.com",
     },
-    to: ["marketing@anarish.com","charu.maheshwari@anarish.com"],
+    to: ["gaurav.khatana@anarish.com"],
     subject: "New Query from Website",
     html: `Following user has tried to contact Anarish on ${data.date} : </br> </br>
     <p> <b> Name: </b> ${data.name} </p></br>
